@@ -5,8 +5,6 @@ public class NickNameInput : MonoBehaviour
 {
     [SerializeField] private Text nickNamePlaceHolder;
     [SerializeField] private InputField inputName;
-    
-
     public void InputNickName()
     {
         nickNamePlaceHolder.text = inputName.text;
