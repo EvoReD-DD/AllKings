@@ -949,7 +949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTextMinutes: {fileID: 1293084084}
   timeTextSeconds: {fileID: 246522685}
-  startTime: 300
+  gameSet: {fileID: 3957776996255924612, guid: 1a6f0f642fe68514b849a009ff77a7b6, type: 3}
 --- !u!1 &551728067
 GameObject:
   m_ObjectHideFlags: 0

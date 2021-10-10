@@ -6,12 +6,14 @@ public class TimerCount : MonoBehaviour
 {
     [SerializeField] private Text timeTextMinutes;
     [SerializeField] private Text timeTextSeconds;
-    [SerializeField] private float startTime;
+    public float startTime;
 
     private DateTime timerEnd;
 
     private void Start()
     {
+        startTime = SingleGameSettings.setTimeStart;
+        Debug.Log(startTime);
         timerEnd = DateTime.Now.AddSeconds(startTime);
     }
 

@@ -19,7 +19,7 @@ public class SaverData : MonoBehaviour
     private void Awake()
     {
         LoadGame();
-        DontDestroyOnLoad(this.gameObject);
+        
     }
 
     public void InvokeSaveGame()
@@ -73,7 +73,18 @@ public class SaverData : MonoBehaviour
         else
             Debug.LogError("No save data to delete.");
     }
-
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            Debug.Log("if" + pauseStatus);//SaveGame();
+        }
+        else
+        {
+            Debug.Log("else" + pauseStatus);
+            //LoadGame();
+        }
+    }
 }
 
 [Serializable]
