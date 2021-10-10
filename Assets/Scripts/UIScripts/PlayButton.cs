@@ -5,7 +5,6 @@ public class PlayButton : MonoBehaviour
 {
     [SerializeField] private GameObject singlePlayerButton;
     [SerializeField] private GameObject multiPlayerButton;
-    [SerializeField] private DataSaver dataSaver;
 
     public void FirstPlayButton()
     {

@@ -3,35 +3,38 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class SaverData : MonoBehaviour
 {
-    [SerializeField]private Text nickName;
-    public float floatToSave;
+    [SerializeField] private Text nickName;
+    [SerializeField] private Text donateCoinsToSave;
+    [SerializeField] private Text moneyCoinsToSave;
+    [SerializeField] private Text levelToSave;
+    private GameObject playerPrefabToSave;
     public bool boolToSave;
 
-    private string nickNameTo;
 
-    private void Start()
+    private void Awake()
     {
-        
         LoadGame();
-    }
-    private void Update()
-    {
-        nickNameTo = nickName.text;
+        DontDestroyOnLoad(this.gameObject);
     }
 
+    public void InvokeSaveGame()
+    {
+        Invoke("SaveGame", 2f);
+    }
     public void SaveGame()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath
           + "/MySaveData.dat");
         SaveData data = new SaveData();
-        data.savedNickName = nickNameTo;
-        data.savedFloat = floatToSave;
-        data.savedBool = boolToSave;
-        Debug.Log("Save" + nickNameTo);
+        data.savedNickName = nickName.text;
+        data.savedDonateCoins = donateCoinsToSave.text;
+        data.savedMoneyCoins = moneyCoinsToSave.text;
         bf.Serialize(file, data);
         file.Close();
         Debug.Log("Game data saved!");
@@ -47,10 +50,9 @@ public class SaverData : MonoBehaviour
               + "/MySaveData.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
-            nickNameTo = data.savedNickName;
-            floatToSave = data.savedFloat;
-            boolToSave = data.savedBool;
-            Debug.Log("load" + nickNameTo);
+            nickName.text = data.savedNickName;
+            donateCoinsToSave.text = data.savedDonateCoins;
+            moneyCoinsToSave.text = data.savedMoneyCoins;
             Debug.Log("Game data loaded!");
         }
         else
@@ -63,20 +65,23 @@ public class SaverData : MonoBehaviour
         {
             File.Delete(Application.persistentDataPath
               + "/MySaveData.dat");
-            nickNameTo = "";
-            floatToSave = 0.0f;
-            boolToSave = false;
+            nickName.text = "";
+            donateCoinsToSave.text = "0";
+            moneyCoinsToSave.text = "0";
             Debug.Log("Data reset complete!");
         }
         else
             Debug.LogError("No save data to delete.");
     }
+
 }
 
 [Serializable]
 public class SaveData
 {
     public string savedNickName;
-    public float savedFloat;
+    public string savedDonateCoins;
+    public string savedMoneyCoins;
+    public string savedLevel;
     public bool savedBool;
 }
