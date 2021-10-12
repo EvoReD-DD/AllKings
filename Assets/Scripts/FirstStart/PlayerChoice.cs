@@ -73,4 +73,8 @@ public class PlayerChoice : MonoBehaviour
         firstStartScript.SetActiveGameObject(false);
         this.gameObject.SetActive(false);
     }
+    public GameObject GameObjectGet()
+    {
+        return playerCharacterArray[currentCharacter];
+    }
 }

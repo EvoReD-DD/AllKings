@@ -8,8 +8,9 @@ public class SaveDataJson : MonoBehaviour
     [SerializeField] private Text nickName;
     [SerializeField] private Text coins;
     [SerializeField] private Text donateCoins;
-    [SerializeField] private GameObject selectedPlayer;
     [SerializeField] private GameObject nickNameInput;
+    [SerializeField] private PlayerChoice playerChoice;
+    private GameObject selectedPlayer;
     private SavedData sv = new SavedData();
     private string path;
 
@@ -30,14 +31,24 @@ public class SaveDataJson : MonoBehaviour
             selectedPlayer.SetActive(true);
             Debug.Log("GameLoaded");
         }
-        else nickNameInput.SetActive(true);
+        else
+        {
+            nickNameInput.SetActive(true);
+        } 
     }
 
-            
+
 #if UNITY_ANDROID && !UNITY_EDITOR
     private void OnApplicationPause(bool pause)
     {
-        if (pause) File.WriteAllText(path, JsonUtility.ToJson(sv));
+        if (pause) 
+        {
+        sv.nickName = nickName.text;
+        sv.savedCoins = coins.text;
+        sv.savedDonateCoins = donateCoins.text;
+        sv.savedSelectedPlayer = selectedPlayer;
+        File.WriteAllText(path, JsonUtility.ToJson(sv));
+        }
     }
 #endif
     private void OnApplicationQuit()
@@ -48,6 +59,10 @@ public class SaveDataJson : MonoBehaviour
         sv.savedSelectedPlayer = selectedPlayer;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         Debug.Log("GameSaved");
+    }
+    public void SelectedPlayer()
+    {
+        selectedPlayer = playerChoice.GameObjectGet();
     }
 }
 [Serializable]
