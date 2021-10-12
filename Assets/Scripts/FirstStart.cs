@@ -5,15 +5,37 @@ public class FirstStart : MonoBehaviour
 {
     [SerializeField] private GameObject nickNameInputMenu;
     [SerializeField] private Text nickNameText;
+    [SerializeField] private GameObject playerChoice;
+    [SerializeField] private GameObject[] deactivateGameObject;
+
     void Start()
     {
         if (nickNameText.text != "")
         {
-            nickNameInputMenu.SetActive(false);
+            
+            SetActiveGameObject(false);
         }
         else
         {
-            nickNameInputMenu.SetActive(true);
+            
+            SetActiveGameObject(true);
+        }
+    }
+    public void SetActiveGameObject(bool active)
+    {
+        if (active == true)
+        {
+            for (int i = 0; i < deactivateGameObject.Length; i++)
+            {
+                deactivateGameObject[i].SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < deactivateGameObject.Length; i++)
+            {
+                deactivateGameObject[i].SetActive(true);
+            }
         }
     }
 }
