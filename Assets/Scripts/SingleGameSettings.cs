@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +7,8 @@ public class SingleGameSettings : MonoBehaviour
     [SerializeField] private Toggle teamToggle;
     [SerializeField] private Dropdown matchTimeDropDown;
     public static float setTimeStart;
+    public static bool redBlue;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -23,13 +23,11 @@ public class SingleGameSettings : MonoBehaviour
     {
         if (teamToggle.isOn == true)
         {
-            Debug.Log("set blue");
-            //player set blue team
+            redBlue = false;
         }
         else
         {
-            Debug.Log("set red");
-            //player set red team
+            redBlue = true;
         }
     }
 

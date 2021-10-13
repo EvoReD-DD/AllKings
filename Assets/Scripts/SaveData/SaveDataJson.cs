@@ -8,9 +8,8 @@ public class SaveDataJson : MonoBehaviour
     [SerializeField] private Text nickName;
     [SerializeField] private Text coins;
     [SerializeField] private Text donateCoins;
+    [SerializeField] private Text lvl;
     [SerializeField] private GameObject nickNameInput;
-    [SerializeField] private PlayerChoice playerChoice;
-    private GameObject selectedPlayer;
     private SavedData sv = new SavedData();
     private string path;
 
@@ -21,20 +20,28 @@ public class SaveDataJson : MonoBehaviour
 #else
         path = Path.Combine(Application.dataPath, "SaveData.json");
 #endif
+        
         if (File.Exists(path))
         {
             sv = JsonUtility.FromJson<SavedData>(File.ReadAllText(path));
             nickName.text = sv.nickName;
             coins.text = sv.savedCoins;
             donateCoins.text = sv.savedDonateCoins;
-            selectedPlayer = sv.savedSelectedPlayer;
-            selectedPlayer.SetActive(true);
+            lvl.text = sv.savedLvl;
             Debug.Log("GameLoaded");
         }
         else
         {
             nickNameInput.SetActive(true);
         } 
+    }
+    public void Save()
+    {
+        sv.nickName = nickName.text;
+        sv.savedCoins = coins.text;
+        sv.savedDonateCoins = donateCoins.text;
+        sv.savedLvl = lvl.text;
+        File.WriteAllText(path, JsonUtility.ToJson(sv));
     }
 
 
@@ -46,7 +53,7 @@ public class SaveDataJson : MonoBehaviour
         sv.nickName = nickName.text;
         sv.savedCoins = coins.text;
         sv.savedDonateCoins = donateCoins.text;
-        sv.savedSelectedPlayer = selectedPlayer;
+        sv.savedLvl = lvl.text;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         }
     }
@@ -56,13 +63,9 @@ public class SaveDataJson : MonoBehaviour
         sv.nickName = nickName.text;
         sv.savedCoins = coins.text;
         sv.savedDonateCoins = donateCoins.text;
-        sv.savedSelectedPlayer = selectedPlayer;
+        sv.savedLvl = lvl.text;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         Debug.Log("GameSaved");
-    }
-    public void SelectedPlayer()
-    {
-        selectedPlayer = playerChoice.GameObjectGet();
     }
 }
 [Serializable]
@@ -71,5 +74,5 @@ public class SavedData
     public string nickName;
     public string savedCoins;
     public string savedDonateCoins;
-    public GameObject savedSelectedPlayer;
+    public string savedLvl;
 }

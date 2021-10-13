@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class CharacterRotation : MonoBehaviour
 {
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
     private void FixedUpdate()
     {
         CharacterRotate();
