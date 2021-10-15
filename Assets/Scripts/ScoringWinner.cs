@@ -7,46 +7,25 @@ public class ScoringWinner : MonoBehaviour
 {
     [SerializeField] private Text bonusWinExp;
     [SerializeField] private Text bonusWinCoins;
-    private int prefCoins;
-    private int prefLvl;
-    private string prefCoinsText;
-    private string prefLvlText;
-    private SavedData sv = new SavedData();
-    private string path;
 
     private void Start()
     {
         ScoreCalculate();
-#if UNITY_ANDROID && !UNITY_EDITOR
-        path = Path.Combine(Application.persistentDataPath, "Save.json");
-#else
-        path = Path.Combine(Application.dataPath, "SaveData.json");
-#endif
-        Debug.Log(sv.savedCoins);
-        Debug.Log(sv.savedLvl);
-        Debug.Log(bonusWinCoins.text);
-        Debug.Log(bonusWinExp.text);
     }
-    public void LoadPrefInfo()
+    public void BonusAccrual()
     {
-        sv = JsonUtility.FromJson<SavedData>(File.ReadAllText(path));
-        prefCoins = Convert.ToInt32(bonusWinCoins.text) + Convert.ToInt32(sv.savedCoins);
-        prefLvl = Convert.ToInt32(bonusWinExp.text) + Convert.ToInt32(sv.savedLvl);
-        Debug.Log(prefCoins);
-        Debug.Log(prefLvl);
-        prefCoinsText = Convert.ToString(prefCoins);
-        prefLvlText = Convert.ToString(prefLvl);
-        sv.savedCoins = prefCoinsText;
-        sv.savedLvl = prefLvlText;
-        File.WriteAllText(path, JsonUtility.ToJson(sv));
+        SaveData.coins += Convert.ToInt32(bonusWinCoins.text);
+        LvlSystem.LvlIncrease(Convert.ToInt32(bonusWinExp.text));
+        Debug.Log("+exp and + coins");
+        SaveAndLoadData.Save();
     }
 
     private void ScoreCalculate()
     {
         if (SingleGameSettings.setTimeStart == 180f)
         {
-            bonusWinCoins.text =Convert.ToString(100);
-            bonusWinExp.text = Convert.ToString(50);
+            bonusWinCoins.text = Convert.ToString(100);
+            bonusWinExp.text = Convert.ToString(1200);
         }
         if (SingleGameSettings.setTimeStart == 300f)
         {

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +26,5 @@ public class WinnerDeterminant : MonoBehaviour
         {
             winnerText.text = "Draw";
         }
-        Time.timeScale = 0;
     }
 }

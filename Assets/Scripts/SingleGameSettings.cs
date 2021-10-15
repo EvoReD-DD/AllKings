@@ -9,10 +9,6 @@ public class SingleGameSettings : MonoBehaviour
     public static float setTimeStart;
     public static bool redBlue;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
     public void SingleModeSetSave()
     {
         TeamToggle();

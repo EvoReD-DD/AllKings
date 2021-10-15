@@ -5,29 +5,37 @@ using UnityEngine.Events;
 
 public class TimerCount : MonoBehaviour
 {
-    [SerializeField] private Text timeTextMinutes;
-    [SerializeField] private Text timeTextSeconds;
+    [SerializeField] private Text timerText;
     [SerializeField] private UnityEvent timeOut;
     public float startTime = 180f;
     private bool callOnce = true;
+    public float minutes;
+    public float seconds;
 
     private DateTime timerEnd;
 
     private void Start()
     {
         startTime = SingleGameSettings.setTimeStart;
-        timerEnd = DateTime.Now.AddSeconds(startTime);
     }
     private void Update()
     {
-        TimeSpan delta = timerEnd - DateTime.Now;
-        timeTextMinutes.text = delta.Minutes.ToString("00");
-        timeTextSeconds.text = delta.Seconds.ToString("00");
-        if (delta.TotalSeconds <= 0 && callOnce==true)
-        {
-            timeOut.Invoke();
-            callOnce = false;
-        }
+        startTime -= Time.deltaTime;
+        Timer(startTime);
     }
 
+    private void Timer(float totalSeconds)
+    {
+        int minutes = Mathf.FloorToInt(totalSeconds / 60f);
+        int seconds = Mathf.RoundToInt(totalSeconds % 60f);
+        if (minutes <= 0 && callOnce == true)
+        {
+            if (seconds <= 0 && callOnce == true)
+            {
+                timeOut.Invoke();
+                callOnce = false;
+            }
+        }
+        timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
 }

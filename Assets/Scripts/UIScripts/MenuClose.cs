@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftBarMenu : MonoBehaviour
+public class MenuClose : MonoBehaviour
 {
     [SerializeField] private GameObject leftBarMenu;
     [SerializeField] private GameObject leftBarMenuButton;
@@ -11,4 +9,5 @@ public class LeftBarMenu : MonoBehaviour
         leftBarMenu.SetActive(false);
         leftBarMenuButton.SetActive(true);
     }
+
 }
