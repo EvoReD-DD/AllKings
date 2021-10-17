@@ -4,6 +4,7 @@ public class SelectedCharacterReceive : MonoBehaviour
 {
     [SerializeField] private GameObject playerMale;
     [SerializeField] private GameObject playerFemale;
+    [SerializeField] private GameObject playerCharacter;
     [SerializeField] private Renderer male;
     [SerializeField] private Renderer female;
     private bool playerChoiced;
@@ -11,14 +12,14 @@ public class SelectedCharacterReceive : MonoBehaviour
     private void Awake()
     {
         
-        redBlue = SingleGameSettings.redBlue;
-        playerChoiced = PlayerChoice.playerChoiced;
+        redBlue = SaveData.redBlue;
+        playerChoiced = SaveData.playerChoiced;
     }
 
     private void Start()
     {
-        PlayerChoicedActivate();
         LoadTeamColorSettings();
+        PlayerChoicedActivate();
     }
     private void LoadTeamColorSettings()
     {
@@ -33,6 +34,7 @@ public class SelectedCharacterReceive : MonoBehaviour
         {
             playerMale.tag = "CharacterBlue";
             playerFemale.tag = "CharacterBlue";
+            playerCharacter.tag = "CharacterBlue";
             male.material.color = Color.blue;
             female.material.color = Color.blue;
         }

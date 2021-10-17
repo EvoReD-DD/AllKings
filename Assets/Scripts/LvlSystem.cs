@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public delegate void EventExperience();
 public class LvlSystem : MonoBehaviour
 {
+    [SerializeField] private Image expBar;
     Dictionary<int, int> lvlExp = new Dictionary<int, int>(42);
     private int dictSize = 42;
     private int[] expToLevel = new int[42];
@@ -20,6 +21,11 @@ public class LvlSystem : MonoBehaviour
         resultCalcNextLvl = 0;
         DictionaryAdd();
     }
+    private void Start()
+    {
+        expRequired = lvlExp[SaveData.lvl] ;
+        LvlBarFill(NormalizedExp());
+    }
     #region DictionaryFilling
     private void DictionaryAdd()
     {
@@ -32,7 +38,6 @@ public class LvlSystem : MonoBehaviour
     {
         expToLevel[i] = resultCalcNextLvl + Convert.ToInt32((expFirstLvl * coefficient));
         resultCalcNextLvl = expToLevel[i];
-        Debug.Log(resultCalcNextLvl);
         return resultCalcNextLvl;
     }
     #endregion
@@ -51,5 +56,15 @@ public class LvlSystem : MonoBehaviour
             Debug.Log("exp" + SaveData.exp);
             SaveAndLoadData.Save();
         }
+    }
+   public void LvlBarFill(float expNormalized)
+    {
+        expBar.fillAmount = expNormalized;
+        SaveData.fillExp = expNormalized;
+    }
+
+    private float NormalizedExp()
+    {
+        return (float)SaveData.exp / expRequired;
     }
 }

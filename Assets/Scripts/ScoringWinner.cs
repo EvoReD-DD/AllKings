@@ -19,25 +19,24 @@ public class ScoringWinner : MonoBehaviour
         Debug.Log("+exp and + coins");
         SaveAndLoadData.Save();
     }
-
     private void ScoreCalculate()
     {
-        if (SingleGameSettings.setTimeStart == 180f)
+        if (SaveData.setTimeStart == 180f)
         {
             bonusWinCoins.text = Convert.ToString(100);
-            bonusWinExp.text = Convert.ToString(1200);
+            bonusWinExp.text = Convert.ToString(50);
         }
-        if (SingleGameSettings.setTimeStart == 300f)
+        if (SaveData.setTimeStart == 300f)
         {
             bonusWinCoins.text = Convert.ToString(150);
             bonusWinExp.text = Convert.ToString(75);
         }
-        if (SingleGameSettings.setTimeStart == 600f)
+        if (SaveData.setTimeStart == 600f)
         {
             bonusWinCoins.text = Convert.ToString(250);
             bonusWinExp.text = Convert.ToString(125);
         }
-        if (SingleGameSettings.setTimeStart == 900f)
+        if (SaveData.setTimeStart == 900f)
         {
             bonusWinCoins.text = Convert.ToString(350);
             bonusWinExp.text = Convert.ToString(200);

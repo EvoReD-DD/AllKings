@@ -5,7 +5,7 @@ public class NickNameInput : MonoBehaviour
 {
     [SerializeField] private Text nickNamePlaceHolder;
     [SerializeField] private InputField inputName;
-    [SerializeField] private GameObject playerChoice;
+    [SerializeField] private GameObject playerChoiceMenu;
     private int initialLvl= 1;
     
 
@@ -16,6 +16,6 @@ public class NickNameInput : MonoBehaviour
         SaveData.lvl = initialLvl;
         SaveData.nickName = inputName.text;
         this.gameObject.SetActive(false);
-        playerChoice.SetActive(true);
+        playerChoiceMenu.SetActive(true);
     }
 }

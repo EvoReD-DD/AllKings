@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class PlayerChoice : MonoBehaviour
@@ -7,7 +8,7 @@ public class PlayerChoice : MonoBehaviour
     [SerializeField] private GameObject arrowLeft;
     [SerializeField] private GameObject arrowRight;
     [SerializeField] private GameObject choiceCharacter;
-    public static bool playerChoiced;
+    
     private int currentCharacter;
     private int i;
 
@@ -71,17 +72,15 @@ public class PlayerChoice : MonoBehaviour
         PlayerPrefs.SetInt("CurrentCharacter", i);
         currentCharacter = i;
         firstStartScript.SetActiveGameObject(false);
-        choiceCharacter.gameObject.SetActive(false);
+        choiceCharacter.SetActive(false);
         if (currentCharacter == 0)
         {
-            playerChoiced = true;
+            SaveData.playerChoiced = true;
+            Debug.Log(SaveData.playerChoiced);
         }
         else {
-            playerChoiced = false;
+            SaveData.playerChoiced = false;
+            Debug.Log(SaveData.playerChoiced);
         }
-    }
-    public GameObject GameObjectGet()
-    {
-        return playerCharacterArray[currentCharacter];
     }
 }

@@ -12,11 +12,9 @@ public class TimerCount : MonoBehaviour
     public float minutes;
     public float seconds;
 
-    private DateTime timerEnd;
-
     private void Start()
     {
-        startTime = SingleGameSettings.setTimeStart;
+        startTime = SaveData.setTimeStart;
     }
     private void Update()
     {

@@ -6,8 +6,6 @@ public class SingleGameSettings : MonoBehaviour
 {
     [SerializeField] private Toggle teamToggle;
     [SerializeField] private Dropdown matchTimeDropDown;
-    public static float setTimeStart;
-    public static bool redBlue;
 
     public void SingleModeSetSave()
     {
@@ -19,11 +17,11 @@ public class SingleGameSettings : MonoBehaviour
     {
         if (teamToggle.isOn == true)
         {
-            redBlue = false;
+            SaveData.redBlue = false;
         }
         else
         {
-            redBlue = true;
+            SaveData.redBlue = true;
         }
     }
 
@@ -31,19 +29,19 @@ public class SingleGameSettings : MonoBehaviour
     {
         if (matchTimeDropDown.value == 0)
         {
-            setTimeStart = 180;
+            SaveData.setTimeStart = 180;
         }
         if (matchTimeDropDown.value == 1)
         {
-            setTimeStart = 300;
+            SaveData.setTimeStart = 300;
         }
         if (matchTimeDropDown.value == 2)
         {
-            setTimeStart = 600;
+            SaveData.setTimeStart = 600;
         }
         if (matchTimeDropDown.value == 3)
         {
-            setTimeStart = 900;
+            SaveData.setTimeStart = 900;
         }
     }
 }

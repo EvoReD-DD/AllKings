@@ -7,16 +7,20 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private float speedMove;
     [SerializeField] private CharacterController charController;
+    [SerializeField] private GameObject baseLvl;
     private Vector3 moveVector;
     private Animator enemyAnimator;
     private Transform target;
     private float gravityValue = -9.8f;
     private int i;
+    private void Awake()
+    {
+        TeamIdentify();
+    }
     private void Start()
     {
         enemyAnimator = enemy.GetComponent<Animator>();
         target = targetFlag;
-        TeamIdentify();
     }
 
     private void Update()
@@ -26,7 +30,8 @@ public class EnemyAI : MonoBehaviour
     private void EnemyMove()
     {
         moveVector.y = gravityValue;
-        moveVector = transform.forward - transform.position;
+        moveVector = target.transform.position - transform.position;
+        transform.rotation = Quaternion.FromToRotation(Vector3.forward, moveVector);
         moveVector *= speedMove;
         charController.Move(moveVector * Time.fixedDeltaTime);
     }
@@ -35,20 +40,23 @@ public class EnemyAI : MonoBehaviour
         if (other.tag == "Flag")
         {
             target = targetBase[i];
-            Debug.Log(moveVector);
         }
     }
     private void TeamIdentify()
     {
-        if (SingleGameSettings.redBlue)
+        if (SaveData.redBlue)
         {
             this.gameObject.tag = "CharacterBlue";
-            i = 1;
+            enemy.tag = "CharacterBlue";
+            i = 0;
         }
         else
         {
             this.gameObject.tag = "CharacterRed";
-            i = 0;
+            enemy.tag = "CharacterRed";
+            i = 1;
+            baseLvl.transform.Rotate(0, 0, -180);
+            Debug.Log("rotate");
         }
     }
 }

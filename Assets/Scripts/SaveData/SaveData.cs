@@ -7,4 +7,8 @@ public class SaveData : MonoBehaviour
     public static int lvl;
     public static string nickName;
     public static int exp;
+    public static float fillExp;
+    public static float setTimeStart;
+    public static bool redBlue;
+    public static bool playerChoiced;
 }
