@@ -5,13 +5,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform targetFlag;
     [SerializeField] private Transform[] targetBase;
     [SerializeField] private GameObject enemy;
-    [SerializeField] private float speedMove;
-    [SerializeField] private CharacterController charController;
     [SerializeField] private GameObject baseLvl;
-    private Vector3 moveVector;
-    private Animator enemyAnimator;
-    private Transform target;
-    private float gravityValue = -9.8f;
+    public static Transform target;
     private int i;
     private void Awake()
     {
@@ -19,27 +14,17 @@ public class EnemyAI : MonoBehaviour
     }
     private void Start()
     {
-        enemyAnimator = enemy.GetComponent<Animator>();
         target = targetFlag;
-    }
-
-    private void Update()
-    {
-        EnemyMove();
-    }
-    private void EnemyMove()
-    {
-        moveVector.y = gravityValue;
-        moveVector = target.transform.position - transform.position;
-        transform.rotation = Quaternion.FromToRotation(Vector3.forward, moveVector);
-        moveVector *= speedMove;
-        charController.Move(moveVector * Time.fixedDeltaTime);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Flag")
         {
             target = targetBase[i];
+        }
+        else if (other.tag == "Base")
+        {
+            target = targetFlag;
         }
     }
     private void TeamIdentify()
@@ -48,15 +33,16 @@ public class EnemyAI : MonoBehaviour
         {
             this.gameObject.tag = "CharacterBlue";
             enemy.tag = "CharacterBlue";
-            i = 0;
+            i = 1;
+            targetBase[i].tag = "Base";
         }
         else
         {
             this.gameObject.tag = "CharacterRed";
             enemy.tag = "CharacterRed";
-            i = 1;
+            i = 0;
+            targetBase[i].tag = "Base";
             baseLvl.transform.Rotate(0, 0, -180);
-            Debug.Log("rotate");
         }
     }
 }

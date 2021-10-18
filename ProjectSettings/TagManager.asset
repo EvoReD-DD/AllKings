@@ -8,6 +8,8 @@ TagManager:
   - CharacterBlue
   - Flag
   - SingleGameSettings
+  - Base
+  - TakeTriger
   layers:
   - Default
   - TransparentFX
