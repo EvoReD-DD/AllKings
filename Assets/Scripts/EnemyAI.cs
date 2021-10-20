@@ -1,12 +1,15 @@
 using UnityEngine;
 
+
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Transform targetFlag;
     [SerializeField] private Transform[] targetBase;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject baseLvl;
+    [SerializeField] private GameObject takeTriger;
     public static Transform target;
+    public static Transform targetFlagPos;
     private int i;
     private void Awake()
     {
@@ -15,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         target = targetFlag;
+        targetFlagPos = targetFlag;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -44,5 +48,10 @@ public class EnemyAI : MonoBehaviour
             targetBase[i].tag = "Base";
             baseLvl.transform.Rotate(0, 0, -180);
         }
+    }
+
+    public static void TargetUpdate()
+    {
+        target = targetFlagPos;
     }
 }

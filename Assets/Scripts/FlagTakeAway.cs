@@ -11,8 +11,9 @@ public class FlagTakeAway : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "CharacterRed")
+        /*if (other.tag == "CharacterRed" )
         {
+            Debug.Log("WorkThisCodeSecond");
             flag.transform.SetParent(other.transform);
             flag.transform.localPosition = Vector3.zero;
             flag.transform.localPosition = flagPositionInPlayer;
@@ -20,10 +21,11 @@ public class FlagTakeAway : MonoBehaviour
         }
         else if (other.tag == "CharacterBlue")
         {
+            Debug.Log("WorkThisCodeSecond");
             flag.transform.SetParent(other.transform);
             flag.transform.localPosition = Vector3.zero;
             flag.transform.localPosition = flagPositionInPlayer;
             flag.transform.localRotation = flagRotationsInPlayer;
-        }
+        }*/
     }
-}
+   }

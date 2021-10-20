@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
     [SerializeField] private CharacterController charController;
     [SerializeField] private float speedMove;
+    
+    private NavMeshAgent agentNav;
     private Animator enemyAnimator;
     private Vector3 moveVector;
     private Transform target;
@@ -12,8 +15,9 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         enemyAnimator = enemy.GetComponent<Animator>();
+        agentNav = this.GetComponent<NavMeshAgent>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
        EnemyMove();
     }
@@ -28,7 +32,9 @@ public class EnemyMovement : MonoBehaviour
             lookAt.y = transform.position.y;
             transform.LookAt(lookAt);
             moveVector.y = gravityValue;
-            charController.Move(moveVector * speedMove * Time.fixedDeltaTime);
+            Debug.Log("SetDestination" + target);
+            agentNav.SetDestination(target.position);
+            //charController.Move(moveVector * speedMove * Time.fixedDeltaTime);
             if (moveVector.x != 0 || moveVector.z != 0)
             {
                 enemyAnimator.SetBool("Run", true);

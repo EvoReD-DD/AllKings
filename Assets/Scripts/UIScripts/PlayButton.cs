@@ -20,6 +20,13 @@ public class PlayButton : MonoBehaviour
     }
     public void SecondPlayButton()
     {
-        SceneManager.LoadScene(1);
+        if (SaveData.mapsChoiced == 0)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else if (SaveData.mapsChoiced == 1)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 }

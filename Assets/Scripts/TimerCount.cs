@@ -9,6 +9,7 @@ public class TimerCount : MonoBehaviour
     [SerializeField] private GameObject timerText;
     [SerializeField] private UnityEvent timeOut;
     [SerializeField] private GameObject pauseImage;
+    private Animator animPauseCount;
     private Text timer;
     public float startTime = 180f;
     private bool callOnce = true;
@@ -16,7 +17,7 @@ public class TimerCount : MonoBehaviour
     public float seconds;
     public static bool pauseOn;
     #region firstTimerVariable
-    private float pauseTime = 5f;
+    private float pauseTime = 3f;
     private DateTime timerEnd;
     #endregion
     private void Start()
@@ -54,9 +55,9 @@ public class TimerCount : MonoBehaviour
             Time.timeScale = 1f;
             timerText.SetActive(true);
             pauseImage.SetActive(false);
+            pauseOn = true;
             startTime -= Time.deltaTime;
             Timer(startTime);
-            pauseOn = true;
         }
     }
 }

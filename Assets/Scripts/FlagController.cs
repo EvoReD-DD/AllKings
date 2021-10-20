@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class FlagController : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class FlagController : MonoBehaviour
     [SerializeField] private UnityEvent HitEventRed;
     [SerializeField] private Vector3 flagPositionInPlayer;
     [SerializeField] private Quaternion flagRotationsInPlayer;
-    [SerializeField] private GameObject takeTriger;
+    [SerializeField] private GameObject flag;
+    private bool onTake = true;
     private void Start()
     {
         this.transform.position = startPosition;
@@ -19,38 +21,52 @@ public class FlagController : MonoBehaviour
     {
         this.gameObject.transform.SetParent(null);
         this.transform.position = Vector3.zero;
-        this.transform.rotation = Quaternion.Euler(0, -90, 0); ;
-
+        this.transform.rotation = Quaternion.Euler(0, -90, 0);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "CharacterRed")
         {
-            this.transform.SetParent(other.transform);
-            this.transform.localPosition = Vector3.zero;
-            this.transform.localPosition = flagPositionInPlayer;
-            this.transform.localRotation = flagRotationsInPlayer;
-            Invoke("TakeTrigerActive",2f);
-            HitEventRed.Invoke();
+            if (onTake)
+            {
+                FlagTakeRed(other);
+                onTake = false;
+                StartCoroutine(TakeFlagPause(other));
+            }
         }
         else if (other.tag == "CharacterBlue")
         {
-         
-            this.transform.SetParent(other.transform);
-            this.transform.localPosition = Vector3.zero;
-            this.transform.localPosition = flagPositionInPlayer;
-            this.transform.localRotation = flagRotationsInPlayer;
-            Invoke("TakeTrigerActive", 2f);
-            HitEventBlue.Invoke();
+            if (onTake)
+            {
+                FlagTakeBlue(other);
+                onTake = false;
+                EnemyAI.TargetUpdate();
+                StartCoroutine(TakeFlagPause(other));
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
+    IEnumerator TakeFlagPause(Collider other)
     {
-        takeTriger.SetActive(false);
-        Debug.Log("exit" + takeTriger.activeSelf);
+        yield return new WaitForSeconds(1);
+        onTake = true;
     }
-    private void TakeTrigerActive()
+    private void FlagTakeRed(Collider other)
     {
-        takeTriger.SetActive(true);
+        this.transform.SetParent(other.transform);
+        this.transform.localPosition = Vector3.zero;
+        this.transform.localPosition = flagPositionInPlayer;
+        this.transform.localRotation = flagRotationsInPlayer;
+        HitEventRed.Invoke();
+        Debug.Log("Red" + this.gameObject.tag);
     }
+    private void FlagTakeBlue(Collider other)
+    {
+        this.transform.SetParent(other.transform);
+        this.transform.localPosition = Vector3.zero;
+        this.transform.localPosition = flagPositionInPlayer;
+        this.transform.localRotation = flagRotationsInPlayer;
+        HitEventBlue.Invoke();
+        Debug.Log("Blue" + this.gameObject.tag);
+    }
+
 }

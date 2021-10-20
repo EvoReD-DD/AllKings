@@ -11,4 +11,5 @@ public class SaveData : MonoBehaviour
     public static float setTimeStart;
     public static bool redBlue;
     public static bool playerChoiced;
+    public static int mapsChoiced;
 }

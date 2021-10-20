@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class PlayerChoice : MonoBehaviour
@@ -8,7 +7,6 @@ public class PlayerChoice : MonoBehaviour
     [SerializeField] private GameObject arrowLeft;
     [SerializeField] private GameObject arrowRight;
     [SerializeField] private GameObject choiceCharacter;
-    
     private int currentCharacter;
     private int i;
 
@@ -49,7 +47,6 @@ public class PlayerChoice : MonoBehaviour
                 arrowRight.SetActive(false);
             }
         }
-
     }
     public void ArrowLeft()
     {
@@ -76,11 +73,9 @@ public class PlayerChoice : MonoBehaviour
         if (currentCharacter == 0)
         {
             SaveData.playerChoiced = true;
-            Debug.Log(SaveData.playerChoiced);
         }
         else {
             SaveData.playerChoiced = false;
-            Debug.Log(SaveData.playerChoiced);
         }
     }
 }
