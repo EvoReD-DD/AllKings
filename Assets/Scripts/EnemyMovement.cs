@@ -32,9 +32,7 @@ public class EnemyMovement : MonoBehaviour
             lookAt.y = transform.position.y;
             transform.LookAt(lookAt);
             moveVector.y = gravityValue;
-            Debug.Log("SetDestination" + target);
             agentNav.SetDestination(target.position);
-            //charController.Move(moveVector * speedMove * Time.fixedDeltaTime);
             if (moveVector.x != 0 || moveVector.z != 0)
             {
                 enemyAnimator.SetBool("Run", true);

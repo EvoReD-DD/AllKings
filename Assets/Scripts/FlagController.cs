@@ -10,7 +10,6 @@ public class FlagController : MonoBehaviour
     [SerializeField] private UnityEvent HitEventRed;
     [SerializeField] private Vector3 flagPositionInPlayer;
     [SerializeField] private Quaternion flagRotationsInPlayer;
-    [SerializeField] private GameObject flag;
     private bool onTake = true;
     private void Start()
     {

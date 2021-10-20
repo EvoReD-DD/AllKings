@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform[] targetBase;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject baseLvl;
-    [SerializeField] private GameObject takeTriger;
     public static Transform target;
     public static Transform targetFlagPos;
     private int i;
@@ -49,7 +48,6 @@ public class EnemyAI : MonoBehaviour
             baseLvl.transform.Rotate(0, 0, -180);
         }
     }
-
     public static void TargetUpdate()
     {
         target = targetFlagPos;
