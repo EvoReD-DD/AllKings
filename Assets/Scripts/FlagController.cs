@@ -10,11 +10,13 @@ public class FlagController : MonoBehaviour
     [SerializeField] private UnityEvent HitEventRed;
     [SerializeField] private Vector3 flagPositionInPlayer;
     [SerializeField] private Quaternion flagRotationsInPlayer;
+    [SerializeField] private ParticleSystem hitFlagParticle;
     private bool onTake = true;
     private void Start()
     {
         this.transform.position = startPosition;
         this.transform.rotation = startRotation;
+        hitFlagParticle.Stop(true);
     }
     public void ResetFlag()
     {
@@ -30,6 +32,7 @@ public class FlagController : MonoBehaviour
             {
                 FlagTakeRed(other);
                 onTake = false;
+                hitFlagParticle.Play(true);
                 EnemyAI.TargetUpdate();
                 StartCoroutine(TakeFlagPause(other));
             }
@@ -40,6 +43,7 @@ public class FlagController : MonoBehaviour
             {
                 FlagTakeBlue(other);
                 onTake = false;
+                hitFlagParticle.Play(true);
                 EnemyAI.TargetUpdate();
                 StartCoroutine(TakeFlagPause(other));
             }

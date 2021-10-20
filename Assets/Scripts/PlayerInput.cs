@@ -1,18 +1,24 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float speedMove;
-    [SerializeField] private float jumpPower;
     [SerializeField] private Joystick joystick;
+    [SerializeField] private float maxSpeed;
     private float gravityForce;
     private Vector3 moveVector;
     [SerializeField] private GameObject character;
     [SerializeField] private Animator animatorMale;
     [SerializeField] private Animator animatorFemale;
+    private float idleSpeed;
+
     private CharacterController characterController;
+    private Vector3 direct;
     private void Start()
     {
+        idleSpeed = speedMove;
         characterController = character.GetComponent<CharacterController>();
     }
     private void Update()
@@ -37,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         }
         if (Vector3.Angle(Vector3.forward, moveVector) > 1f || Vector3.Angle(Vector3.forward, moveVector) == 0)
         {
-            Vector3 direct = Vector3.RotateTowards(transform.forward, moveVector, speedMove, 0.0f);
+            direct = Vector3.RotateTowards(transform.forward, moveVector, speedMove, 0.0f);
             transform.rotation = Quaternion.LookRotation(direct);
         }
         moveVector.y = gravityForce;
@@ -54,5 +60,15 @@ public class PlayerInput : MonoBehaviour
         {
             gravityForce = -1f;
         }
+    }
+    public void LeapForwardOn()
+    {
+        StartCoroutine(moveSpeedChange());
+    }
+    private IEnumerator moveSpeedChange()
+    {
+        speedMove = maxSpeed;
+        yield return new WaitForSeconds(1);
+        speedMove = idleSpeed;
     }
 }

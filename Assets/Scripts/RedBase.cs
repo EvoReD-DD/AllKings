@@ -25,4 +25,5 @@ public class RedBase : MonoBehaviour
             flagDelivered.Play(true);
         }
     }
+   
 }

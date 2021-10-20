@@ -23,9 +23,9 @@ public class MapChoice : MonoBehaviour
             PlayerPrefs.SetInt("CurrentMap", i);
         }
         mapsArray[i].SetActive(true);
-        if (i < 0)
+        if (i <= 0)
         {
-            arrowLeft.SetActive(true);
+            arrowLeft.SetActive(false);
         }
         if (i == mapsArray.Length)
         {
