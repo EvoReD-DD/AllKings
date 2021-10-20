@@ -31,6 +31,7 @@ public class FlagController : MonoBehaviour
             {
                 FlagTakeRed(other);
                 onTake = false;
+                EnemyAI.TargetUpdate();
                 StartCoroutine(TakeFlagPause(other));
             }
         }
@@ -47,7 +48,7 @@ public class FlagController : MonoBehaviour
     }
     IEnumerator TakeFlagPause(Collider other)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         onTake = true;
     }
     private void FlagTakeRed(Collider other)
@@ -57,7 +58,6 @@ public class FlagController : MonoBehaviour
         this.transform.localPosition = flagPositionInPlayer;
         this.transform.localRotation = flagRotationsInPlayer;
         HitEventRed.Invoke();
-        Debug.Log("Red" + this.gameObject.tag);
     }
     private void FlagTakeBlue(Collider other)
     {
@@ -66,7 +66,6 @@ public class FlagController : MonoBehaviour
         this.transform.localPosition = flagPositionInPlayer;
         this.transform.localRotation = flagRotationsInPlayer;
         HitEventBlue.Invoke();
-        Debug.Log("Blue" + this.gameObject.tag);
     }
 
 }
