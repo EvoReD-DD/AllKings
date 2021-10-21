@@ -18,12 +18,13 @@ public class LvlSystem : MonoBehaviour
     private static int lvlStep = 1;
     private void Awake()
     {
+        Time.timeScale = 1;
         resultCalcNextLvl = 0;
         DictionaryAdd();
     }
     private void Start()
     {
-        expRequired = lvlExp[SaveData.lvl] ;
+        expRequired = lvlExp[SaveData.lvl];
         LvlBarFill(NormalizedExp());
     }
     #region DictionaryFilling
@@ -57,7 +58,7 @@ public class LvlSystem : MonoBehaviour
             SaveAndLoadData.Save();
         }
     }
-   public void LvlBarFill(float expNormalized)
+    public void LvlBarFill(float expNormalized)
     {
         expBar.fillAmount = expNormalized;
         SaveData.fillExp = expNormalized;

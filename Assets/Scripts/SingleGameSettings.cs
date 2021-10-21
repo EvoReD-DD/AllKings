@@ -4,30 +4,29 @@ using UnityEngine.UI;
 
 public class SingleGameSettings : MonoBehaviour
 {
-    [SerializeField] private Toggle teamToggle;
     [SerializeField] private Scrollbar timeScrollBar;
     [SerializeField] private Text timeText;
-    [SerializeField] private Scrollbar teamScrollBar;
+    [SerializeField] private Slider teamSlider;
     [SerializeField] private Image teamColorImage;
 
     public void SingleModeSetSave()
     {
-        TeamScrollBar();
+        TeamSlider();
         MatchTimeSetSave();
     }
     private void Update()
     {
         MatchTimeSetSave();
-        TeamScrollBar();
+        TeamSlider();
     }
-    private void TeamScrollBar()
+    private void TeamSlider()
     {
-        if (teamScrollBar.value >= 0 && timeScrollBar.value <= 0.49)
+        if (teamSlider.value == 0)
         {
             SaveData.redBlue = false;
             teamColorImage.color = Color.blue;
         }
-        if (teamScrollBar.value >= 0.5 && timeScrollBar.value <= 1)
+        if (teamSlider.value == 1)
         {
             SaveData.redBlue = true;
             teamColorImage.color = Color.red;

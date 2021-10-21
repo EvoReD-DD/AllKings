@@ -8,13 +8,11 @@ public class NickNameInput : MonoBehaviour
     [SerializeField] private GameObject playerChoiceMenu;
     [SerializeField] private GameObject errorEnterNick;
     private int initialLvl = 1;
-
-
-
     public void InputNickName()
     {
         if (inputName.text != "")
         {
+            Debug.Log("OK");
             nickNamePlaceHolder.text = inputName.text;
             SaveData.lvl = initialLvl;
             SaveData.nickName = inputName.text;

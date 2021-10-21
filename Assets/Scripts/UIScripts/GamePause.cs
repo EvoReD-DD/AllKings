@@ -11,7 +11,6 @@ public class GamePause : MonoBehaviour
         Time.timeScale = timer;
         Timer();
     }
-
     public void Close()
     {
         isPause = false;
@@ -28,13 +27,11 @@ public class GamePause : MonoBehaviour
         {
             timer = 0;
             pauseImage.SetActive(true);
-            isPause = true;
         }
         else if (isPause == false)
         {
             timer = 1f;
             pauseImage.SetActive(false);
-            isPause = false;
         }
     }
 }

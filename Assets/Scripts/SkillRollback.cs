@@ -17,9 +17,6 @@ public class SkillRollback : MonoBehaviour
     private void Awake()
     {
         ParticleColorIdent();
-    }
-    private void Start()
-    {
         leapParticle[i].Stop(true);
     }
     private void Update()
