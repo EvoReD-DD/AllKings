@@ -3213,7 +3213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8543594939441708053, guid: 22596570a583b82429149c646779b1e5, type: 3}
       propertyPath: m_Name
-      value: FlagAnim
+      value: FlagAnim 1
       objectReference: {fileID: 0}
     - target: {fileID: 8543594939441708053, guid: 22596570a583b82429149c646779b1e5, type: 3}
       propertyPath: m_Layer
@@ -3367,6 +3367,42 @@ PrefabInstance:
       propertyPath: hitFlagParticle
       value: 
       objectReference: {fileID: 7980122021971713507}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[0].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[1].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[2].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[2].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
+      propertyPath: startPosition.Array.data[2].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8813996941903409182, guid: 22596570a583b82429149c646779b1e5, type: 3}
       propertyPath: HitEventRed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

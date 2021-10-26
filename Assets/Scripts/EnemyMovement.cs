@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
         enemyAnimator = enemy.GetComponent<Animator>();
         agentNav = this.GetComponent<NavMeshAgent>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
        EnemyMove();
     }
@@ -25,14 +25,13 @@ public class EnemyMovement : MonoBehaviour
     {
         if (TimerCount.pauseOn)
         {
-            target = EnemyAI.target;
             moveVector = Vector3.zero;
-            moveVector = (target.position - transform.position).normalized;
-            Vector3 lookAt = target.position;
+            moveVector = (EnemyAI.target.position - transform.position).normalized;
+            Vector3 lookAt = EnemyAI.target.position;
             lookAt.y = transform.position.y;
             transform.LookAt(lookAt);
             moveVector.y = gravityValue;
-            agentNav.SetDestination(target.position);
+            agentNav.SetDestination(EnemyAI.target.position);
             if (moveVector.x != 0 || moveVector.z != 0)
             {
                 enemyAnimator.SetBool("Run", true);

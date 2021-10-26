@@ -11,8 +11,13 @@ public class Sounds : MonoBehaviour
     [SerializeField] private AudioClip error;
     [SerializeField] private GameObject errorNickName;
     [SerializeField] private AudioClip slider;
+    [SerializeField] private AudioClip counter;
+    [SerializeField] private AudioSource soundMusic;
 
-    
+    private void Start()
+    {
+        CountStart();
+    }
     public void ClickSound()
     {
         soundFX.PlayOneShot(click);
@@ -39,5 +44,10 @@ public class Sounds : MonoBehaviour
     public void SoundsOff()
     {
         soundFX.mute = !soundFX.mute;
+    }
+    private void CountStart()
+    {
+        soundFX.PlayOneShot(counter);
+        soundMusic.Play();
     }
 }

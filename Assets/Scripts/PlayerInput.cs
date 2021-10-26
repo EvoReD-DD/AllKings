@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(direct);
         }
         moveVector.y = gravityForce;
-        characterController.Move(moveVector * Time.fixedDeltaTime);
+        characterController.Move(moveVector * Time.deltaTime);
     }
 
     private void GameGravity()

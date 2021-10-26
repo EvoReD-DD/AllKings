@@ -25,11 +25,13 @@ public class SingleGameSettings : MonoBehaviour
         {
             SaveData.redBlue = false;
             teamColorImage.color = Color.blue;
+            SaveData.baseSide = 0;
         }
         if (teamSlider.value == 1)
         {
             SaveData.redBlue = true;
             teamColorImage.color = Color.red;
+            SaveData.baseSide = 1;
         }
     }
     private void MatchTimeSetSave()

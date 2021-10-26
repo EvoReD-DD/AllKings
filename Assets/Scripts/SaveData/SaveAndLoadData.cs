@@ -39,6 +39,7 @@ public class SaveAndLoadData : MonoBehaviour
         SaveData.donateCoins = sv.savedDonateCoins;
         SaveData.exp = sv.savedExp;
         SaveData.lvl = sv.savedLvl;
+        SaveData.baseSide = sv.savedBaseSide;
         nickName.text = SaveData.nickName;
         coins.text = Convert.ToString(SaveData.coins);
         donateCoins.text = Convert.ToString(SaveData.donateCoins);
@@ -53,6 +54,7 @@ public class SaveAndLoadData : MonoBehaviour
         sv.savedDonateCoins = SaveData.donateCoins;
         sv.savedLvl = SaveData.lvl;
         sv.savedExp = SaveData.exp;
+        sv.savedBaseSide = SaveData.baseSide;
         sv.savedPlayerChoiced = SaveData.playerChoiced;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         Debug.Log("GameSaved");
@@ -69,6 +71,7 @@ public class SaveAndLoadData : MonoBehaviour
         sv.savedDonateCoins = SaveData.donateCoins;
         sv.savedLvl = SaveData.lvl;
         sv.savedExp = SaveData.exp;
+        sv.savedBaseSide = SaveData.baseSide;
         sv.savedPlayerChoiced = SaveData.playerChoiced;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         }
@@ -81,6 +84,7 @@ public class SaveAndLoadData : MonoBehaviour
         sv.savedDonateCoins = SaveData.donateCoins;
         sv.savedLvl = SaveData.lvl;
         sv.savedExp = SaveData.exp;
+        sv.savedBaseSide = SaveData.baseSide;
         sv.savedPlayerChoiced = SaveData.playerChoiced;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         Debug.Log("GameSaved");
@@ -95,4 +99,5 @@ public class SavedData
     public int savedLvl;
     public int savedExp;
     public bool savedPlayerChoiced;
+    public int savedBaseSide;
 }

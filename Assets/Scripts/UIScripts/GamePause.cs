@@ -3,9 +3,14 @@ using UnityEngine;
 public class GamePause : MonoBehaviour
 {
     [SerializeField] private GameObject pauseImage;
-    [SerializeField] private float timer;
+    private static float timer;
     public static bool isPause;
+    private static bool callOnce;
 
+    private void Start()
+    {
+        callOnce = false;
+    }
     void Update()
     {
         Time.timeScale = timer;
@@ -15,12 +20,10 @@ public class GamePause : MonoBehaviour
     {
         isPause = false;
     }
-
     public void Pause()
     {
         isPause = true;
     }
-
     private void Timer()
     {
         if (isPause == true)
@@ -32,6 +35,14 @@ public class GamePause : MonoBehaviour
         {
             timer = 1f;
             pauseImage.SetActive(false);
+        }
+    }
+    public static void OffPause()
+    {
+        if (!callOnce)
+        {
+            timer = 1f;
+            callOnce = true;
         }
     }
 }

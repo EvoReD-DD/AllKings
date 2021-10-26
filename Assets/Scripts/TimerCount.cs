@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System;
 using UnityEngine.Events;
+using System.Collections;
 
 public class TimerCount : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class TimerCount : MonoBehaviour
     private bool callOnce = true;
     public float minutes;
     public float seconds;
-    public static bool pauseOn;
+    public static bool pauseOn = false;
     #region firstTimerVariable
     private float pauseTime = 3f;
     private DateTime timerEnd;
@@ -26,6 +26,7 @@ public class TimerCount : MonoBehaviour
         startTime = SaveData.setTimeStart;
         timerEnd = DateTime.Now.AddSeconds(pauseTime);
         timer = timerText.GetComponent<Text>();
+        Time.timeScale = 0;
     }
     private void Update()
     {
@@ -47,17 +48,15 @@ public class TimerCount : MonoBehaviour
     }
     private void CountdownToStart()
     {
-        pauseOn = false;
-        Time.timeScale = 0;
         TimeSpan delta = timerEnd - DateTime.Now;
         if (delta.TotalSeconds <= 0)
         {
-            Time.timeScale = 1f;
             timerText.SetActive(true);
             pauseImage.SetActive(false);
             pauseOn = true;
             startTime -= Time.deltaTime;
             Timer(startTime);
+            GamePause.OffPause();
         }
     }
 }

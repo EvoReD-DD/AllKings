@@ -30,6 +30,13 @@ public class EnemyAI : MonoBehaviour
             target = targetFlag;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Flag")
+        {
+            target = targetFlag;
+        }
+    }
     private void TeamIdentify()
     {
         if (SaveData.redBlue)
@@ -45,7 +52,6 @@ public class EnemyAI : MonoBehaviour
             enemy.tag = "CharacterRed";
             i = 0;
             targetBase[i].tag = "Base";
-            baseLvl.transform.Rotate(0, 0, -180);
         }
     }
     public static void TargetUpdate()

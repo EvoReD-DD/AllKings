@@ -8,7 +8,7 @@ public class SkillRollback : MonoBehaviour
     [SerializeField] private Text timer;
     [SerializeField] private Button buttonLeap;
     [SerializeField] private ParticleSystem[] leapParticle;
-    [SerializeField] private GameObject[] leapObj;
+    [SerializeField] private GameObject[] leapParticleObject;
     [SerializeField] private Animator buttonBlink;
     [SerializeField] private UnityEvent leapForward;
     private float skillRollTime = 15f;
@@ -59,12 +59,12 @@ public class SkillRollback : MonoBehaviour
         if (SaveData.redBlue)
         {
             i = 0;
-            leapObj[i].SetActive(true);
+            leapParticleObject[i].SetActive(true);
         }
         else
         {
             i = 1;
-            leapObj[i].SetActive(true);
+            leapParticleObject[i].SetActive(true);
         }
     }
     private IEnumerator ParticleOff()
