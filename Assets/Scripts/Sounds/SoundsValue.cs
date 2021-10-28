@@ -14,6 +14,10 @@ public class SoundsValue : MonoBehaviour
     [SerializeField] private AudioMixerSnapshot snapMute;
     [SerializeField] private Toggle muteToggle;
 
+    private void Start()
+    {
+        snapNormal.TransitionTo(0);
+    }
     public void MasterVolume(float volume)
     {
         mixerMaster.audioMixer.SetFloat("Master", Mathf.Log10(volume)*20);

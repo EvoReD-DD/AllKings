@@ -22,11 +22,11 @@ public class PlayButton : MonoBehaviour
     {
         if (SaveData.mapsChoiced == 0)
         {
-            SceneManager.LoadScene(1);
+            StartCoroutine(SceneTransition.LoadScene(1));
         }
         else if (SaveData.mapsChoiced == 1)
         {
-            SceneManager.LoadScene(2);
+            StartCoroutine(SceneTransition.LoadScene(2));
         }
     }
 }
