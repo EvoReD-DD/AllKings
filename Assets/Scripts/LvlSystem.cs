@@ -54,7 +54,6 @@ public class LvlSystem : MonoBehaviour
             int j = SaveData.exp - expRequired;
             SaveData.exp = (j > 0) ? j : 0;
             SaveData.lvl += lvlStep;
-            Debug.Log("exp" + SaveData.exp);
             SaveAndLoadData.Save();
         }
     }

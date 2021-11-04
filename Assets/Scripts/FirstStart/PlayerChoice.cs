@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerChoice : MonoBehaviour
 {
     [SerializeField] private GameObject[] playerCharacterArray;
-    [SerializeField] private FirstStart firstStartScript;
     [SerializeField] private GameObject arrowLeft;
     [SerializeField] private GameObject arrowRight;
     [SerializeField] private GameObject choiceCharacter;
@@ -22,9 +21,9 @@ public class PlayerChoice : MonoBehaviour
             PlayerPrefs.SetInt("CurrentCharacter", i);
         }
         playerCharacterArray[i].SetActive(true);
-        if (i < 0)
+        if (i <= 0)
         {
-            arrowLeft.SetActive(true);
+            arrowLeft.SetActive(false);
         }
         if (i == playerCharacterArray.Length)
         {
@@ -68,7 +67,6 @@ public class PlayerChoice : MonoBehaviour
     {
         PlayerPrefs.SetInt("CurrentCharacter", i);
         currentCharacter = i;
-        firstStartScript.SetActiveGameObject(false);
         choiceCharacter.SetActive(false);
         if (currentCharacter == 0)
         {

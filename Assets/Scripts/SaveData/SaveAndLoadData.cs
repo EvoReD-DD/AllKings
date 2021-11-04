@@ -9,27 +9,21 @@ public class SaveAndLoadData : MonoBehaviour
     [SerializeField] private Text coins;
     [SerializeField] private Text donateCoins;
     [SerializeField] private Text lvl;
-    [SerializeField] private GameObject nickNameInput;
     [SerializeField] private Image expFill;
-    private int lvlStep = 1;
+    [SerializeField] private GameObject loginMenu;
+    [SerializeField] private GameObject leftBar;
+    [SerializeField] private GameObject options;
+    [SerializeField] private GameObject leftBarMenuButton;
     private static SavedData sv = new SavedData();
-    private static string path;
-    private void Start()
+    public static string path;
+
+    public void CreatePath()
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
         path = Path.Combine(Application.persistentDataPath, "Save.json");
 #else
         path = Path.Combine(Application.dataPath, "SaveData.json");
 #endif
-
-        if (File.Exists(path))
-        {
-            Load();
-        }
-        else
-        {
-            nickNameInput.SetActive(true);
-        }
     }
     public void Load()
     {
@@ -43,9 +37,8 @@ public class SaveAndLoadData : MonoBehaviour
         nickName.text = SaveData.nickName;
         coins.text = Convert.ToString(SaveData.coins);
         donateCoins.text = Convert.ToString(SaveData.donateCoins);
-        lvl.text = Convert.ToString(SaveData.lvl-lvlStep);
+        lvl.text = Convert.ToString(SaveData.lvl);
         SaveData.playerChoiced = sv.savedPlayerChoiced;
-        Debug.Log("GameLoaded");
     }
     public static void Save()
     {
@@ -57,9 +50,15 @@ public class SaveAndLoadData : MonoBehaviour
         sv.savedBaseSide = SaveData.baseSide;
         sv.savedPlayerChoiced = SaveData.playerChoiced;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
-        Debug.Log("GameSaved");
     }
-
+    public void ResetData()
+    {
+        File.Delete(path);
+        leftBar.SetActive(false);
+        options.SetActive(true);
+        loginMenu.SetActive(true);
+        leftBarMenuButton.SetActive(true);
+    }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
     private void OnApplicationPause(bool pause)
@@ -73,6 +72,7 @@ public class SaveAndLoadData : MonoBehaviour
         sv.savedExp = SaveData.exp;
         sv.savedBaseSide = SaveData.baseSide;
         sv.savedPlayerChoiced = SaveData.playerChoiced;
+        SaveData.authorOnce = false;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
         }
     }
@@ -87,7 +87,6 @@ public class SaveAndLoadData : MonoBehaviour
         sv.savedBaseSide = SaveData.baseSide;
         sv.savedPlayerChoiced = SaveData.playerChoiced;
         File.WriteAllText(path, JsonUtility.ToJson(sv));
-        Debug.Log("GameSaved");
     }
 }
 [Serializable]

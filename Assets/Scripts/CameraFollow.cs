@@ -6,6 +6,8 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform targetPosition;
     private Transform camera;
     private Vector3 position;
+    private float smooth = 0.5f;
+
     private void Start()
     {
         camera = GetComponent<Transform>();
@@ -20,7 +22,8 @@ public class CameraFollow : MonoBehaviour
     {
         position.x = targetPosition.position.x;
         position.z = targetPosition.position.z;
-        camera.position = new Vector3(position.x + offset.x, camera.position.y , position.z + offset.z);
-        camera.transform.LookAt(targetPosition);
+        camera.position = new Vector3(position.x + offset.x, camera.position.y, position.z + offset.z);
+        var targetRotation = Quaternion.LookRotation(targetPosition.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smooth * Time.deltaTime);
     }
 }

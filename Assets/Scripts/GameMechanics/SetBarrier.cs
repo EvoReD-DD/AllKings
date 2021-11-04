@@ -10,10 +10,11 @@ public class SetBarrier : MonoBehaviour
     [SerializeField] private Button buttonBarrier;
     [SerializeField] private Animator buttonBlink;
     [SerializeField] private GameObject character;
-    [SerializeField] private Vector3 offsetIstantiate;
+    public Transform parent;
     private int item = 0;
     private float skillRollTime = 15f;
     private bool timerOn = false;
+    private Vector3 position;
 
     private void Update()
     {
@@ -23,15 +24,14 @@ public class SetBarrier : MonoBehaviour
             Timer(skillRollTime);
         }
     }
-    public void SetDistance()
-    {
-       
-    }
     public void SetBarriers()
     {
         timerOn = true;
         item = Random.Range(0, listBarriers.Count);
-        Instantiate(listBarriers[item], character.transform.position - offsetIstantiate , Quaternion.identity);
+        GameObject obj = parent.GetChild(item).gameObject;
+        obj.SetActive(true);
+        obj.transform.position = character.transform.position;
+        obj.transform.localRotation = character.transform.localRotation;
     }
     private void Timer(float totalSeconds)
     {

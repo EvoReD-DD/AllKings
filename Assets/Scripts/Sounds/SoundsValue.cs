@@ -30,7 +30,6 @@ public class SoundsValue : MonoBehaviour
     {
        mixerMaster.audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
     }
-
     public void SoundInPause()
     {
         snapInPause.TransitionTo(0);
@@ -49,7 +48,5 @@ public class SoundsValue : MonoBehaviour
         {
             snapNormal.TransitionTo(0);
         }
-        
     }
-
 }
